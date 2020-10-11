@@ -25,8 +25,8 @@ SECRET_KEY = '-jc7uv=+k#uv&ww&9^z@(!=49#rn7bxipp%2uagwjvcdkc&u19'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ["trustymonkey2.herokuapp.com", "127.0.0.1"]
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["trustymonkey2.herokuapp.com", "127.0.0.1"]
+# ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 from corsheaders.defaults import default_headers
