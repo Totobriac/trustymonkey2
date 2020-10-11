@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -116,18 +117,48 @@ WSGI_APPLICATION = 'trusty_monkey.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd751emj1l26su7',
-        'USER': 'ogfvybcmsvalua',
-        'PASSWORD': '5bc91c850bbda7e2a15a9699f6afdd17531f544d0c2805726d12a1b230cf9a0e',
-        'HOST': 'ec2-46-137-124-19.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'd751emj1l26su7',
+#         'USER': 'ogfvybcmsvalua',
+#         'PASSWORD': '5bc91c850bbda7e2a15a9699f6afdd17531f544d0c2805726d12a1b230cf9a0e',
+#         'HOST': 'ec2-46-137-124-19.eu-west-1.compute.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+if 'test' in sys.argv:
+    #Configuration for test database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd613uir5h19hl',
+            'USER': 'wbyiomoeypyywj',
+            'PASSWORD': 'f26e1b630963d5305fef8bc4a17680ee866667297357aca0e412f06891aed646',
+            'HOST': 'ec2-46-137-124-19.eu-west-1.compute.amazonaws.com',
+            'PORT': 5432,
+            'TEST': {
+                'NAME': 'd613uir5h19hl', #This is an important entry
+            }
+        }
+    }
+else:
+  #Default configuration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'd751emj1l26su7',
+            'USER': 'ogfvybcmsvalua',
+            'PASSWORD': '5bc91c850bbda7e2a15a9699f6afdd17531f544d0c2805726d12a1b230cf9a0e',
+            'HOST': 'ec2-46-137-124-19.eu-west-1.compute.amazonaws.com',
+            'PORT': 5432,
+            'TEST': {
+                'NAME': 'd751emj1l26su7',
+            }
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
