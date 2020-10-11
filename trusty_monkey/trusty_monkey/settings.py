@@ -119,10 +119,10 @@ WSGI_APPLICATION = 'trusty_monkey.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd6r50ll4ee9r4',
-        'USER': 'jpnmrkotbtyqnd',
-        'PASSWORD': '1d484320f872c16baec847880a6176f1f4780c5d693f714542c1ae36a531f85b',
-        'HOST': 'ec2-18-203-62-227.eu-west-1.compute.amazonaws.com',
+        'NAME': 'd751emj1l26su7',
+        'USER': 'ogfvybcmsvalua',
+        'PASSWORD': '5bc91c850bbda7e2a15a9699f6afdd17531f544d0c2805726d12a1b230cf9a0e',
+        'HOST': 'ec2-46-137-124-19.eu-west-1.compute.amazonaws.com',
         'PORT': '5432'
     }
 }
