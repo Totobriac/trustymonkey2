@@ -15,4 +15,4 @@ services:
   - postgresql
 
 script:
-  - ./trusty_monkey/manage.py test
+  - ./trusty_monkey/manage.py test --keepdb
