@@ -1,7 +1,8 @@
 from django.contrib import admin
-from places.models import (RestaurantReview, StarterPic,
-                           MainPic, DessertPic, MenuPic,
-                           OutsidePic, InsidePic, Restaurant)
+
+from places.models import (DessertPic, InsidePic, MainPic, MenuPic, OutsidePic,
+                           Restaurant, RestaurantReview, StarterPic)
+
 # Register your models here.
 
 admin.site.register(Restaurant)

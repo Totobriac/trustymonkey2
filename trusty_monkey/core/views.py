@@ -1,6 +1,6 @@
-from django.views.generic.base import TemplateView
-from rest_framework.views import APIView
 from django.conf import settings
+from django.views.generic.base import TemplateView
+
 
 class IndexTemplateView(TemplateView):
 
@@ -10,5 +10,3 @@ class IndexTemplateView(TemplateView):
         else:
             template_name = "index.html"
         return template_name
-
-    
