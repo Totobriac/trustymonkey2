@@ -8,7 +8,7 @@ before_install:
   - chmod +x ./trusty_monkey/manage.py
 before_script:
   - pip install -r requirements.txt
-  - cd ./trustymonkey/
+  - cd ./trusty_monkey/
 
 env: DJANGO_SETTINGS_MODULE="trusty_monkey.settings"
 
