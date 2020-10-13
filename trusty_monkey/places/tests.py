@@ -46,7 +46,15 @@ class CreateRestaurantTest(APITestCase):
         response = self.client.post("/api/restaurant/", data = self.data)        
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Restaurant.objects.count(), 1)
-
+        self.assertEqual(Restaurant.objects.get().maps, "ChIJd230zfzz5URz8XVIZjiVzYc")
+        self.assertEqual(Restaurant.objects.get().name, "Les Fricoteurs")
+        self.assertEqual(Restaurant.objects.get().opened, ["lundi à samedi"])
+        self.assertEqual(Restaurant.objects.get().website, "fricoteurs.com")
+        self.assertEqual(Restaurant.objects.get().phone, "010203040506")
+        self.assertEqual(Restaurant.objects.get().restLat, 0.1)
+        self.assertEqual(Restaurant.objects.get().restLng, 0.1)
+        self.assertEqual(Restaurant.objects.get().adress, "21 grande rue")      
+        
 
 class CreateReviewTest(APITestCase):   
 
@@ -105,7 +113,7 @@ class AddPicsTest(APITestCase):
                                                     content_type='image/jpeg')}
         response = self.client.post("/api/starter_pic/", data = self.data )        
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
+       
     def test_add_main_pic(self):
         self.data = {"restaurant_review": self.restaurant_review.id,
                     "picture_1": SimpleUploadedFile(name='main_pic.jpg',
@@ -165,30 +173,36 @@ class GetPicsTest(APITestCase):
                                                                 review_author = self.user)
         self.token = Token.objects.create(user=self.user)
         self.api_authentication()
-        self.starterPic =  StarterPic.objects.create(restaurant_review = self.restaurant_review,
-                                                    picture_1 = SimpleUploadedFile(name='starter_pic.jpg', 
-                                                                                    content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
-                                                                                    content_type='image/jpeg'))
-        self.mainPic =  MainPic.objects.create(restaurant_review = self.restaurant_review,
-                                                    picture_1 = SimpleUploadedFile(name='main_pic.jpg', 
-                                                                                    content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
-                                                                                    content_type='image/jpeg'))
-        self.dessertPic =  DessertPic.objects.create(restaurant_review = self.restaurant_review,
-                                                    picture_1 = SimpleUploadedFile(name='dessert_pic.jpg', 
-                                                                                    content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
-                                                                                    content_type='image/jpeg'))
-        self.menuPic =  MenuPic.objects.create(restaurant_review = self.restaurant_review,
-                                                    picture_1 = SimpleUploadedFile(name='menu_pic.jpg', 
-                                                                                    content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
-                                                                                    content_type='image/jpeg'))
-        self.insidePic =  InsidePic.objects.create(restaurant_review = self.restaurant_review,
-                                                    picture_1 = SimpleUploadedFile(name='inside_pic.jpg', 
-                                                                                    content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
-                                                                                    content_type='image/jpeg'))
-        self.outsidePic =  OutsidePic.objects.create(restaurant_review = self.restaurant_review,
-                                                    picture_1 = SimpleUploadedFile(name='outside_pic.jpg', 
-                                                                                    content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
-                                                                                    content_type='image/jpeg'))       
+        self.starterPic =  StarterPic.objects.create(
+                                        restaurant_review = self.restaurant_review,
+                                        picture_1 = SimpleUploadedFile(name='starter_pic.jpg', 
+                                        content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
+                                        content_type='image/jpeg'))
+        self.mainPic =  MainPic.objects.create(
+                                        restaurant_review = self.restaurant_review,
+                                        picture_1 = SimpleUploadedFile(name='main_pic.jpg', 
+                                        content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
+                                        content_type='image/jpeg'))
+        self.dessertPic =  DessertPic.objects.create(
+                                        restaurant_review = self.restaurant_review,
+                                        picture_1 = SimpleUploadedFile(name='dessert_pic.jpg', 
+                                        content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
+                                        content_type='image/jpeg'))
+        self.menuPic =  MenuPic.objects.create(
+                                        restaurant_review = self.restaurant_review,
+                                        picture_1 = SimpleUploadedFile(name='menu_pic.jpg', 
+                                        content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
+                                        content_type='image/jpeg'))
+        self.insidePic =  InsidePic.objects.create(
+                                        restaurant_review = self.restaurant_review,
+                                        picture_1 = SimpleUploadedFile(name='inside_pic.jpg', 
+                                        content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
+                                        content_type='image/jpeg'))
+        self.outsidePic =  OutsidePic.objects.create(
+                                        restaurant_review = self.restaurant_review,
+                                        picture_1 = SimpleUploadedFile(name='outside_pic.jpg', 
+                                        content=open("./staticfiles/banane_seule.jpg", 'rb').read(),
+                                        content_type='image/jpeg'))       
         
     def api_authentication(self):
         self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token.key)
