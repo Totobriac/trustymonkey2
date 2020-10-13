@@ -8,6 +8,7 @@ before_install:
   - chmod +x ./trusty_monkey/manage.py
 before_script:
   - pip install -r requirements.txt
+  - cd ./trustymonkey/
 
 env: DJANGO_SETTINGS_MODULE="trusty_monkey.settings"
 
@@ -15,4 +16,4 @@ services:
   - postgresql
 
 script:
-  - ./trusty_monkey/manage.py test --keepdb
+  - python manage.py test --keepdb
